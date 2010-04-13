@@ -20,14 +20,14 @@ has behavior => (
 );
 
 has behaviors => (
-    metaclass => 'Collection::Hash',
+    traits    => ['Hash'],
     is        => 'ro',
     isa       => 'HashRef[TAEB::AI::Behavioral::Behavior]',
     lazy      => 1,
-    provides  => {
-        get    => 'get_behavior',
-        set    => '_set_behavior',
-        delete => '_delete_behavior',
+    handles   => {
+        get_behavior     => 'get',
+        _set_behavior    => 'set',
+        _delete_behavior => 'delete',
     },
     default   => sub {
         my $self = shift;
